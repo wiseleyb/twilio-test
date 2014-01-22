@@ -1,28 +1,46 @@
-== README
+== Twilio Test
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+To use:
 
-Things you may want to cover:
+git clone https://github.com/wiseleyb/twilio-test
 
-* Ruby version
+cd twilio-test
 
-* System dependencies
+Create a config/twilio.yml file and enter your twilio info
 
-* Configuration
+```
+development:
+  account_sid:   ''
+  auth_token:    ''
+  phone_number:  '+14151231234'
+test:
 
-* Database creation
+production:
+```
 
-* Database initialization
+Create a config/database.yml
 
-* How to run the test suite
+```
+development:
+  adapter: sqlite3
+  database: db/development.sqlite3
+  pool: 5
+  timeout: 5000
 
-* Services (job queues, cache servers, search engines, etc.)
+test:
+  adapter: sqlite3
+  database: db/test.sqlite3
+  pool: 5
+  timeout: 5000
 
-* Deployment instructions
+production:
+  adapter: sqlite3
+  database: db/production.sqlite3
+  pool: 5
+  timeout: 5000
+```
 
-* ...
+bundle
+bundle exec rails s
 
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Got to http://localhost:3000
