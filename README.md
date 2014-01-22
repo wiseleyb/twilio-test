@@ -1,5 +1,7 @@
 ## Twilio Test
 
+Very simple starter app for a hackathon tonight. This just allows you to send text-messages via Twilio.
+
 To use:
 
 git clone https://github.com/wiseleyb/twilio-test
