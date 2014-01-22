@@ -1,0 +1,9 @@
+%h1 Twilio Test
+
+= form_tag '/', method: :get do
+  %p
+    = text_field_tag 'phone_number', '+14154055410'
+  %p
+    = text_field_tag 'message', 'test'
+  %p
+    = submit_tag
