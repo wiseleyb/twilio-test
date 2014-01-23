@@ -60,7 +60,24 @@ class ContactsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  
+  def csv_import
+    require 'csv'
+    csv = CSV.read(params[:file].path)
+    header = csv[0]
+    (1..csv.size).each do |i|
+        row = Hash[[header, csv[1]].transpose]
+        contact = Contact.where(group: row["group"], phone: row["phone_num"]).first
+        if contact.nil?
+          Contact.create!(group: row["group"],
+                         phone: row["phone_num"],
+                         user_id: User.first.id,
+                         name: row["name"])
+        end
+      end
+      redirect_to contacts_path
+  end
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_contact
@@ -69,6 +86,6 @@ class ContactsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def contact_params
-      params.require(:contact).permit(:name, :phone)
+      params.require(:contact).permit(:name, :phone, :user_id, :group)
     end
 end

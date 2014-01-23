@@ -1,5 +1,9 @@
 Twil::Application.routes.draw do
-  resources :contacts
+  resources :contacts do
+    collection do 
+      post "csv_import"
+    end
+  end
 
   resources :users
 
