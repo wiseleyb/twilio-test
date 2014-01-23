@@ -9,6 +9,11 @@ Twil::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'home#index'
 
+  resources :home do
+    collection do
+      post :send_message
+    end
+  end
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
