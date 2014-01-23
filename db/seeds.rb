@@ -6,3 +6,12 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 #
+
+u = User.create!(username: 'wiseleyb')
+
+5.times.each do |i|
+  Contact.create!(user_id: u.id,
+                  group: 'test',
+                  name: "Ben Wiseley #{i}",
+                  phone: '+14154055410')
+end
