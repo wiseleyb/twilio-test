@@ -14,6 +14,8 @@
 ActiveRecord::Schema.define(version: 20140123031253) do
 
   create_table "contacts", force: true do |t|
+    t.integer  "user_id"
+    t.string   "group"
     t.string   "name"
     t.string   "phone"
     t.datetime "created_at"
