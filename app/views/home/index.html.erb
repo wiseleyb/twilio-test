@@ -1,5 +1,6 @@
 <div class="col-md-8 col-md-offset-2">
-  <h1>Twlio Test</h1>
+  <h1><%= app_name%></h1>
+<% if 1 == 2 %>
   <%= form_tag '/', {method: :get, role: "form"} do %>
 
     <div class="field form-group">
@@ -18,21 +19,22 @@
   <hr/>
 
   <%= form_tag send_message_home_index_path do %>
-    <div class="field form-group">  
+    <div class="field form-group">
       <%= label_tag :user_id, 'User ID' %>
       <%= text_field_tag 'user_id', params[:user_id] || User.first.try(:id), class: "form-control" %>
     </div>
-    <div class="field form-group">  
+    <div class="field form-group">
       <%= label_tag :group, 'Group' %>
       <%= text_field_tag 'group', params[:group] || User.first.contacts.first.group, class: "form-control" %>
     </div>
-    <div class="field form-group">  
+    <div class="field form-group">
       <%= label_tag :message, 'Message Content' %>
       <%= text_area_tag 'message', nil, class: "form-control" %>
     </div>
-    <div>  
+    <div>
       <%= submit_tag :estimate, class: "btn btn-default" %>
       <%= submit_tag :send, class: "btn btn-default" %>
-    </div>  
+    </div>
   <% end %>
+<% end %>
 </div>
