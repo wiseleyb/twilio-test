@@ -1,11 +1,16 @@
 Twil::Application.routes.draw do
   resources :contacts do
-    collection do 
+    collection do
       post "csv_import"
     end
   end
 
+  get 'login', to: 'sessions#new'
+  get 'logout', to: 'sessions#destroy'
+  get 'signup', to: 'users#new'
+
   resources :users
+  resources :sessions
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
