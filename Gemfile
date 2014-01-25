@@ -47,6 +47,6 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-gem 'haml'
+gem 'sorcery', '~> 0.8.5'
+gem 'thin'
 gem 'twilio-ruby'
-
