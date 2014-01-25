@@ -24,3 +24,12 @@ bundle
 bundle exec rails s
 
 Got to http://localhost:3000
+
+
+### Testing
+
+Run all cucumber tests
+
+```
+bundle exec rake
+```

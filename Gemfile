@@ -47,6 +47,13 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+gem 'factory_girl'
 gem 'sorcery', '~> 0.8.5'
 gem 'thin'
 gem 'twilio-ruby'
+
+group :test do
+  gem 'rspec-rails'
+  gem 'cucumber-rails', require: false
+  gem 'database_cleaner'
+end
