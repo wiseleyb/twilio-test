@@ -1,3 +1,4 @@
+<% @user ||= User.new # allow this form to be placed anywhere %>
 <%= form_for(@user) do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">

@@ -6,4 +6,9 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true
 
   validates :email, uniqueness: true
+
+  # TODO - add name to users table/signup/etc.
+  def name
+    email.split('@').first
+  end
 end

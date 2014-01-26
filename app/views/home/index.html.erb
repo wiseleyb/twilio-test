@@ -1,5 +1,16 @@
 <div class="col-md-8 col-md-offset-2">
   <h1><%= app_name%></h1>
+
+  <% if logged_in? %>
+    Hola <%= current_user.name %>
+  <% else %>
+    <h2>Signup</h2>
+    <%= render 'users/form' %>
+
+    <h2>Login</h2>
+    <%= render 'sessions/login' %>
+  <% end %>
+
 <% if 1 == 2 %>
   <%= form_tag '/', {method: :get, role: "form"} do %>
 
