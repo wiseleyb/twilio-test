@@ -1,0 +1,29 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Group</th>
+      <th>Name</th>
+      <th>Phone</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @contacts.each do |contact| %>
+      <tr>
+        <td><%= contact.contact_group.user.name %></td>
+        <td><%= contact.contact_group.group_name %></td>
+        <td><%= contact.name %></td>
+        <td><%= contact.phone %></td>
+        <td><%= link_to 'Show', contact, class: "btn btn-info btn-primary btn-sm" %></td>
+        <td><%= link_to 'Edit', edit_contact_path(contact), class: "btn btn-warning btn-primary btn-sm" %></td>
+        <td><%= link_to 'Destroy', contact,
+          method: :delete,
+          class: "btn btn-danger btn-primary btn-sm", data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

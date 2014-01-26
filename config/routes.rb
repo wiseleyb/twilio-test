@@ -1,9 +1,7 @@
 Twil::Application.routes.draw do
-  resources :contacts do
-    collection do
-      post "csv_import"
-    end
-  end
+  resources :contact_groups
+
+  resources :contacts
 
   get 'login', to: 'sessions#new'
   get 'logout', to: 'sessions#destroy'

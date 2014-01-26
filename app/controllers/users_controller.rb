@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @contact_groups = @user.contact_groups
   end
 
   # GET /users/new

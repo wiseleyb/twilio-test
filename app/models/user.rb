@@ -1,6 +1,9 @@
 class User < ActiveRecord::Base
   authenticates_with_sorcery!
 
+  has_many :contact_groups, dependent: :destroy
+  has_many :contacts, through: :contact_groups, dependent: :destroy
+
   validates :password, length: { minimum: 3 }, if: :password_required?
   validates :password, confirmation: true, if: :password_required?
   validates :password_confirmation, presence: true, if: :password_required?

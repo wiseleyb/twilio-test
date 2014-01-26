@@ -8,7 +8,15 @@
 <% unless @user.can_twilio? %>
   <p>Looks like you need to
     <%= link_to "enter your Twilio information!", edit_user_path(@user) %>
-  </p>
+    </p>
+<% else %>
+  <% unless @contact_groups.empty? %>
+    <h2>Contact Groups</h2>
+    <%= render 'contact_groups/index' %>
+  <% end %>
+
+  <h2>Upload more contacts</h2>
+  <%= render 'contact_groups/form' %>
 <% end %>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |

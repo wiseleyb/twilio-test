@@ -1,0 +1,33 @@
+<% @contact_group ||= ContactGroup.new %>
+<%= form_for @contact_group, html: { multipart: true } do |f| %>
+  <% if @contact_group.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@contact_group.errors.count, "error") %> prohibited this contact_group from being saved:</h2>
+
+      <ul>
+      <% @contact_group.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>Upload a CSV file to import contacts so you can text them.</p>
+  <p>CSV must have headers "Name" and "Phone"... everything else will be ignored.</p>
+  <p>Example:
+    <br/>
+    "Name", "Phone"
+    "bob", "+14155551212"
+  </p>
+
+  <div class="field">
+    <%= file_field_tag :file %>
+  </div>
+
+  <div class="field">
+    <%= f.label :group_name %><br>
+    <%= f.text_field :group_name %>
+  </div>
+
+  <%= submit_tag "Import" %>
+<% end %>
