@@ -4,6 +4,8 @@ module NavigationHelpers
 
     when /the home\s?page/
       '/'
+    when /the edit_user page/
+      edit_user_path(@user)
     else
       begin
         page_name =~ /the (.*) page/
