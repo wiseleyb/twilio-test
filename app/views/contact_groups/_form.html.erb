@@ -14,11 +14,12 @@
 
   <p>Upload a CSV file to import contacts so you can text them.</p>
   <p>CSV must have headers "Name" and "Phone"... everything else will be ignored.</p>
-  <p>Example:
-    <br/>
-    "Name", "Phone"
-    "bob", "+14155551212"
-  </p>
+  <p>Example:</p>
+  <pre>
+    Name,Phone
+    "bob","+14155551212"
+  </pre>
+  <p>There's a sample file in data/sample.csv</p>
 
   <div class="field form-group">
     <%= file_field_tag :file %>

@@ -1,14 +1,18 @@
 Twil::Application.routes.draw do
-  resources :contact_groups
+  resources :contact_groups do
+    member do
+      patch :send_text_messages
+    end
+  end
 
   resources :contacts
+  resources :home
+  resources :users
+  resources :sessions
 
   get 'login', to: 'sessions#new'
   get 'logout', to: 'sessions#destroy'
   get 'signup', to: 'users#new'
-
-  resources :users
-  resources :sessions
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -16,11 +20,7 @@ Twil::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'home#index'
 
-  resources :home do
-    collection do
-      post :send_message
-    end
-  end
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

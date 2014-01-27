@@ -10,6 +10,29 @@
   <%= @contact_group.group_name %>
 </p>
 
+<p>
+  <strong>Contacts:</strong>
+  <%= @contact_group.contacts.count %>
+</p>
+
+<p>
+  <strong>Messages sent so far:</strong>
+  <%= @contact_group.contact_logs.count %>
+</p>
+
+<%= form_for @contact_group,
+      url: send_text_messages_contact_group_path(@contact_group) do %>
+
+  <div class="field form-group">
+    <%= label_tag :message %><br>
+    <%= text_area_tag :message %>
+  </div>
+
+  <%= submit_tag "Send Text Messages" %>
+<% end %>
+
+<hr/>
+
 <%= render 'contacts/index' %>
 
 <%= link_to 'Edit', edit_contact_group_path(@contact_group) %> |

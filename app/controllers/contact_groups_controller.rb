@@ -1,5 +1,7 @@
 class ContactGroupsController < ApplicationController
-  before_action :set_contact_group, only: [:show, :edit, :update, :destroy]
+  before_action :set_contact_group, only: [:show, :edit,
+                                           :update, :destroy,
+                                           :send_text_messages]
 
   # GET /contact_groups
   # GET /contact_groups.json
@@ -25,12 +27,12 @@ class ContactGroupsController < ApplicationController
   # POST /contact_groups
   # POST /contact_groups.json
   def create
-    @contact_group = ContactGroup.create!(user_id: current_user.id,
-                                          group_name: params[:contact_group][:group_name])
-    @contact_group.import(params[:file].path)
+    @contact_group = ContactGroup.new(user_id: current_user.id,
+                                      group_name: params[:contact_group][:group_name])
 
     respond_to do |format|
       if @contact_group.save
+        @contact_group.import(params[:file].path)
         format.html { redirect_to @contact_group, notice: 'Contact group was successfully created.' }
         format.json { render action: 'show', status: :created, location: @contact_group }
       else
@@ -45,6 +47,7 @@ class ContactGroupsController < ApplicationController
   def update
     respond_to do |format|
       if @contact_group.update(contact_group_params)
+        @contact_group.import(params[:file].path)
         format.html { redirect_to @contact_group, notice: 'Contact group was successfully updated.' }
         format.json { head :no_content }
       else
@@ -62,6 +65,14 @@ class ContactGroupsController < ApplicationController
       format.html { redirect_to contact_groups_url }
       format.json { head :no_content }
     end
+  end
+
+  # POST /contact_groups/1/send_text_messages
+  def send_text_messages
+    # TODO error handling, etc.
+    @contact_group.send_text_messages(params[:message])
+    flash[:notice] = "#{@contact_group.contacts.count} text messages sent."
+    redirect_to contact_group_path(@contact_group)
   end
 
   private
