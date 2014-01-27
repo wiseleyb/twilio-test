@@ -1,4 +1,4 @@
-<table>
+<table class="table table-hover">
   <thead>
     <tr>
       <th>User</th>
@@ -14,9 +14,9 @@
       <tr>
         <td><%= contact_group.user_id %></td>
         <td><%= contact_group.group_name %></td>
-        <td><%= link_to 'Show', contact_group %></td>
-        <td><%= link_to 'Edit', edit_contact_group_path(contact_group) %></td>
-        <td><%= link_to 'Destroy', contact_group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', contact_group, class: "btn btn-info btn-primary btn-sm" %></td>
+        <td><%= link_to 'Edit', edit_contact_group_path(contact_group), class: "btn btn-warning btn-primary btn-sm" %></td>
+        <td><%= link_to 'Destroy', contact_group, method: :delete, class: "btn btn-danger btn-primary btn-sm", data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
