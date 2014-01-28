@@ -49,6 +49,7 @@ end
 
 gem 'factory_girl'
 
+# three gems required for sidekiq
 gem 'sidekiq'
 gem 'sinatra', require: false
 gem 'slim'

@@ -3,6 +3,13 @@ class ContactGroup < ActiveRecord::Base
   has_many   :contacts, dependent: :destroy
   has_many   :contact_logs, dependent: :destroy
 
+  attr_accessor :file
+
+  validates :group_name, presence: true
+  validates :file, csv: true, allow_blank: true, allow_nil: true
+
+  after_save :import_file
+
   def import(file)
     # TODO clean this up
     # TODO make column names flexible/user-specified
@@ -41,6 +48,19 @@ class ContactGroup < ActiveRecord::Base
       ContactLog.create!(user_id: self.user_id,
                          contact_group_id: self.id,
                          contact_id: c.id)
+    end
+  end
+
+  def upload_file(file)
+    csv_file = File.open(file)
+    return ActionDispatch::Http::UploadedFile.new(
+      tempfile: csv_file,
+      filename: File.basename(csv_file))
+  end
+
+  def import_file
+    if file
+      import(file.path)
     end
   end
 end

@@ -2,7 +2,6 @@ class ContactGroupsController < ApplicationController
   before_action :set_contact_group, only: [:show, :edit,
                                            :update, :destroy,
                                            :send_text_messages]
-
   # GET /contact_groups
   # GET /contact_groups.json
   def index
@@ -27,13 +26,12 @@ class ContactGroupsController < ApplicationController
   # POST /contact_groups
   # POST /contact_groups.json
   def create
-    @contact_group = ContactGroup.new(user_id: current_user.id,
-                                      group_name: params[:contact_group][:group_name])
+    @contact_group = ContactGroup.new(contact_group_params)
 
     respond_to do |format|
       if @contact_group.save
-        @contact_group.import(params[:file].path)
-        format.html { redirect_to @contact_group, notice: 'Contact group was successfully created.' }
+        format.html { redirect_to @contact_group,
+                      notice: 'Contact group was successfully created.' }
         format.json { render action: 'show', status: :created, location: @contact_group }
       else
         format.html { render action: 'new' }
@@ -47,7 +45,6 @@ class ContactGroupsController < ApplicationController
   def update
     respond_to do |format|
       if @contact_group.update(contact_group_params)
-        @contact_group.import(params[:file].path)
         format.html { redirect_to @contact_group, notice: 'Contact group was successfully updated.' }
         format.json { head :no_content }
       else
@@ -84,6 +81,8 @@ class ContactGroupsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def contact_group_params
-      params.require(:contact_group).permit(:group_name)
+      params.require(:contact_group)
+            .permit(:file, :group_name)
+            .merge(user_id: current_user.id)
     end
 end
