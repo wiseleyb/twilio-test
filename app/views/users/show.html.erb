@@ -5,19 +5,28 @@
   <%= @user.email %>
 </p>
 
-<% unless @user.can_twilio? %>
-  <p>Looks like you need to
-    <%= link_to "enter your Twilio information!", edit_user_path(@user) %>
-    </p>
+<% if !@user.can_twilio? %>
+<div class="panel panel-default">
+  <div class="panel-body red_notify">
+    <h3>Looks like you need to enter your Twilio information!</h3>
+    <br>
+    <%= link_to "Sign Up for Twilio!", "https://www.twilio.com/try-twilio", class: "btn btn-primary", target: "_new" %>
+    <br>
+    <br>
+    <%= render 'twilio' %>
+  </div>
+</div>
 <% else %>
-  <% unless @contact_groups.empty? %>
+  <% if !@contact_groups.empty? %>
     <h2>Contact Groups</h2>
     <%= render 'contact_groups/index' %>
   <% end %>
-
-  <h2>Upload more contacts</h2>
-  <%= render 'contact_groups/form' %>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <h2>Upload more contacts</h2>
+    <%= render 'contact_groups/form' %>
+    <%= link_to 'Edit', edit_user_path(@user) %> |
+    <%= link_to 'Back', users_path %>
+  </div>
+</div>
 <% end %>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>

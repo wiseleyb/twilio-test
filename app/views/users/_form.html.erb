@@ -34,30 +34,7 @@
     </div>
   <% end %>
 
-  <fieldset>
-    <legend>Twilio Settings</legend>
-
-    <p># TODO - add a helper page on where to find these after signing up on
-      Twilio. Also - maybe add some JS to make this expand collapse and a
-      note that explains this is optional.</p>
-
-    <div class="field form-group">
-      <%= f.label :twilio_account_sid %><br>
-      <%= f.text_field :twilio_account_sid %>
-    </div>
-
-    <div class="field form-group">
-      <%= f.label :twilio_auth_token %><br>
-      <%= f.text_field :twilio_auth_token %>
-    </div>
-
-    <div class="field form-group">
-      <%= f.label :twilio_phone_number %><br>
-      <%= f.text_field :twilio_phone_number %>
-    </div>
-  </fieldset>
-
   <div class="actions">
-    <%= f.submit (@user.new_record? ? "Signup" : "Update"), id: 'sigup' %>
+    <%= f.submit (@user.new_record? ? "Signup" : "Update"), id: 'update'%>
   </div>
 <% end %>
