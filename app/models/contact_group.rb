@@ -6,6 +6,7 @@ class ContactGroup < ActiveRecord::Base
   def import(file)
     # TODO clean this up
     # TODO make column names flexible/user-specified
+    # TODO async this
     require 'csv'
     csv = CSV.read(file)
     header = csv[0]

@@ -1,10 +1,13 @@
+require 'sidekiq/web'
+
 Twil::Application.routes.draw do
+  mount Sidekiq::Web, at: '/sidekiq'
+
   resources :contact_groups do
     member do
       patch :send_text_messages
     end
   end
-
   resources :contacts
   resources :home
   resources :users

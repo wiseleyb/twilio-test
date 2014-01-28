@@ -70,8 +70,9 @@ class ContactGroupsController < ApplicationController
   # POST /contact_groups/1/send_text_messages
   def send_text_messages
     # TODO error handling, etc.
-    @contact_group.send_text_messages(params[:message])
-    flash[:notice] = "#{@contact_group.contacts.count} text messages sent."
+    MessageWorker.perform_async(@contact_group.id, params[:message])
+    flash[:notice] = "#{@contact_group.contacts.count} text messages queued " +
+                     "to be sent."
     redirect_to contact_group_path(@contact_group)
   end
 

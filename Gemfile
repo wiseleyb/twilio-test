@@ -48,6 +48,11 @@ end
 # gem 'debugger', group: [:development, :test]
 
 gem 'factory_girl'
+
+gem 'sidekiq'
+gem 'sinatra', require: false
+gem 'slim'
+
 gem 'sorcery', '~> 0.8.5'
 gem 'thin'
 gem 'twilio-ruby'
